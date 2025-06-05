@@ -9,6 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.9.0"
+    "@astrojs/react": "^4.3.0",
+    "@supabase/supabase-js": "^2.49.10",
+    "@tiptap/extension-bubble-menu": "^2.13.0",
+    "@tiptap/extension-image": "^2.13.0",
+    "@tiptap/extension-link": "^2.13.0",
+    "@tiptap/pm": "^2.13.0",
+    "@tiptap/react": "^2.13.0",
+    "@tiptap/starter-kit": "^2.13.0",
+    "astro": "^5.9.0",
+    "tailwind": "^4.0.0"
   }
 }
