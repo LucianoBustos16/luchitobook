@@ -1,19 +1,5 @@
 ---
-// src/pages/documentos.astro
-import { supabase } from '../lib/supabaseClient';
-
-const { data: documentos, error } = await supabase
-  .from('documentos')
-  .select('*');
-
-  console.log(documentos, error);
+import DocumentosList from '../components/DocumentosList.jsx';
 ---
 
-<ul>
-  {documentos?.map((doc) => (
-    <li>
-      <h3>{doc.titulo}</h3>
-      <div set:html={doc.contenido} />
-    </li>
-  ))}
-</ul>
+<DocumentosList client:load />
