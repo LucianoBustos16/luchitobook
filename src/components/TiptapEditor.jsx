@@ -1,8 +1,7 @@
-// src/components/TiptapEditor.jsx
 import { useEditor, EditorContent, BubbleMenu } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
-import { supabase } from '../lib/supabaseClient';  // Ajusta la ruta según tu estructura
+import { supabase } from '../lib/supabaseClient'; 
 
 export default function TiptapEditor() {
     const [title, setTitle] = useState(""); // Estado para el título
@@ -12,7 +11,7 @@ export default function TiptapEditor() {
     extensions: [StarterKit],
     content,
     onUpdate: ({ editor }) => {
-      setContent(editor.getHTML()); // Guarda el contenido en el estado
+      setContent(editor.getHTML());
     },
   });
 
@@ -101,6 +100,8 @@ export default function TiptapEditor() {
 
       {/* Área de escritura */}
       <EditorContent editor={editor} className="editor-content" />
+
+      
 
       {/* Botón de guardar */}
       <button onClick={handleSave} className="save-button">
