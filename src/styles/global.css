@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* src/styles/editor.css */
+
 .toolbar {
   display: flex;
   gap: 8px;
@@ -62,4 +62,8 @@
   margin-top: 16px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+h1{
+  color: red
 }
