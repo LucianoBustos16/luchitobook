@@ -16,8 +16,6 @@ import {
   AlignCenter,
   AlignRight,
   AlignJustify,
-  Upload,
-  ImageUp
 } from 'lucide-react';
 
 
@@ -150,11 +148,13 @@ const handleImageUpload = async (event) => {
 
       {/* Toolbar mejorado */}
       <div className="toolbar">
+
+      <form>
         <select
+          id="countries"
           value={selectedHeading}
           onChange={handleHeadingChange}
-          className="heading-select border rounded-md bg-white p-2 text-sm px-1"
-        >
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option value="p">Párrafo</option>
           <option value="h1">Título 1</option>
           <option value="h2">Título 2</option>
@@ -163,6 +163,8 @@ const handleImageUpload = async (event) => {
           <option value="h5">Título 5</option>
           <option value="h6">Título 6</option>
         </select>
+      </form>
+
 
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -240,7 +242,7 @@ const handleImageUpload = async (event) => {
       </div>
 
       {/* Bubble Menu */}
-      {editor && (
+      {/* {editor && (
         <BubbleMenu editor={editor}>
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
@@ -255,7 +257,7 @@ const handleImageUpload = async (event) => {
             Cursiva
           </button>
         </BubbleMenu>
-      )}
+      )} */}
 
       <EditorContent editor={editor} className="editor-content" />
 

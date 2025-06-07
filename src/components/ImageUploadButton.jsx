@@ -1,4 +1,4 @@
-import { Upload } from 'lucide-react';
+import { Image } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient'
 
 function ImageUploadButton({ editor }) {
@@ -45,10 +45,11 @@ function ImageUploadButton({ editor }) {
         style={{ display: 'none' }}
       />
       <button
+      className='h-full'
         aria-label="Subir imagen"
         onClick={() => document.getElementById('image-upload').click()}
       >
-        <Upload size={18} />
+        <Image size={18} />
       </button>
     </div>
   );

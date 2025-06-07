@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 export default function DocumentosList() {
   const [documentos, setDocumentos] = useState([]);
 
+
+
   useEffect(() => {
     supabase
       .from('documentos')
@@ -12,6 +14,7 @@ export default function DocumentosList() {
       .then(({ data }) => setDocumentos(data));
   }, []);
 
+  
   return (
     <ul>
       {documentos.map((doc) => (
