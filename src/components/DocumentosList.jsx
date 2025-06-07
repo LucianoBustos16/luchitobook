@@ -20,7 +20,7 @@ export default function DocumentosList() {
       {documentos.map((doc) => (
         <li key={doc.id}>
           <h2>{doc.titulo}</h2>
-          <div dangerouslySetInnerHTML={{ __html: doc.contenido }} />
+          <div className='editor-content' dangerouslySetInnerHTML={{ __html: doc.contenido }} />
         </li>
       ))}
     </ul>

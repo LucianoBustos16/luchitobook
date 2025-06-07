@@ -8,6 +8,7 @@ import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image';
+import Placeholder from '@tiptap/extension-placeholder';
 
 import ImageUploadButton from './ImageUploadButton.jsx'; // Asegúrate de que este componente esté correctamente importado
 
@@ -21,13 +22,17 @@ import {
 
 export default function TiptapEditor() {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("<p>Empieza a escribir aquí...</p>");
+  const [content, setContent] = useState("");
   const [selectedHeading, setSelectedHeading] = useState('p');
 
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
       StarterKit,
+      Placeholder.configure({
+      placeholder: 'Empieza a escribir aquí...',
+      emptyEditorClass: 'is-editor-empty'
+    }),
       Image.configure({
         inline: true,  // Permite imágenes en línea
         allowBase64: true,  // Soporta imágenes en base64
@@ -41,7 +46,7 @@ export default function TiptapEditor() {
       TableHeader,
       TableCell,
     ],
-    content,
+    content: '', // vacío si quieres que se vea el placeholder,
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML());
     },
@@ -140,7 +145,7 @@ const handleImageUpload = async (event) => {
     <div className="editor-container">
       <input
         type="text"
-        placeholder="Título del documento"
+        placeholder="Título"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className="title-input"

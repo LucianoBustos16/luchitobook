@@ -3,6 +3,7 @@
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   padding: 8px;
   background: #f5f5f5;
@@ -22,11 +23,24 @@
   color: white;
 }
 
-.editor-content {
+.is-editor-empty::before {
+  content: attr(data-placeholder);
+  color: #999;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+
+.editor-content .ProseMirror {
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 0 0 4px 4px;
   min-height: 200px;
+}
+
+.ProseMirror-focused{
+  outline: none;
 }
 
 /* Estilo para el BubbleMenu */
@@ -64,8 +78,8 @@
   cursor: pointer;
 }
 
-/* Estilos para encabezados */
-h1 {
+
+.editor-content h1 {
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.2;
@@ -76,7 +90,7 @@ h1 {
   padding-bottom: 0.5rem;
 }
 
-h2 {
+.editor-content h2 {
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.3;
@@ -85,7 +99,7 @@ h2 {
   font-family: 'Arial', sans-serif;
 }
 
-h3 {
+.editor-content h3 {
   font-size: 1.75rem;
   font-weight: 600;
   line-height: 1.4;
@@ -94,7 +108,7 @@ h3 {
   font-family: 'Arial', sans-serif;
 }
 
-h4 {
+.editor-content h4 {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.5;
@@ -103,7 +117,7 @@ h4 {
   font-family: 'Arial', sans-serif;
 }
 
-h5 {
+.editor-content h5 {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.6;
@@ -112,7 +126,7 @@ h5 {
   font-family: 'Arial', sans-serif;
 }
 
-h6 {
+.editor-content h6 {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
@@ -124,7 +138,7 @@ h6 {
 }
 
 /* Estilos para párrafos */
-p {
+.editor-content p {
   font-size: 1rem;
   line-height: 1.6;
   margin: 0 0 1rem 0;
@@ -133,7 +147,7 @@ p {
 }
 
 /* Estilos para listas */
-ul, ol {
+.editor-content ul, .editor-content ol {
   margin: 1rem 0;
   padding-left: 2rem;
   line-height: 1.6;
@@ -141,33 +155,33 @@ ul, ol {
   font-family: 'Georgia', serif;
 }
 
-ul {
+.editor-content ul {
   list-style-type: disc;
 }
 
-ol {
+.editor-content ol {
   list-style-type: decimal;
 }
 
-li {
+.editor-content li {
   margin-bottom: 0.5rem;
 }
 
 /* Estilos para listas anidadas */
-ul ul, ol ul {
+.editor-content ul ul, .editor-content ol ul {
   list-style-type: circle;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-ol ol, ul ol {
+.editor-content ol ol, .editor-content ul ol {
   list-style-type: lower-latin;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
 /* Estilos para tablas */
-table {
+.editor-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
@@ -175,13 +189,13 @@ table {
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
-th, td {
+.editor-content th, td {
   padding: 0.75rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-th {
+.editor-content th {
   background-color: #3498db;
   color: white;
   font-weight: 600;
@@ -190,15 +204,15 @@ th {
   letter-spacing: 1px;
 }
 
-tr:nth-child(even) {
+.editor-content tr:nth-child(even) {
   background-color: #f8f9fa;
 }
 
-tr:hover {
+.editor-content tr:hover {
   background-color: #f1f1f1;
 }
 
-caption {
+.editor-content caption {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
