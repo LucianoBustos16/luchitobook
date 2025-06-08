@@ -17,7 +17,7 @@ export default function DocumentosList() {
     <ul>
       {documentos.map((doc) => (
         <li key={doc.id}>
-          <a href={`/documentos/${doc.id}`}>
+          <a href={`/documentos/${doc.slug}`}>
             <h2>{doc.titulo}</h2>
             <p>{new Date(doc.creado_en).toLocaleDateString()}</p>
           </a>

@@ -10,6 +10,8 @@ import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
 import { toast } from 'sonner';
+import { generateSlug } from '../utils/slug';  // Ajustá la ruta según corresponda
+
 
 import ImageUploadButton from './ImageUploadButton.jsx'; // Asegúrate de que este componente esté correctamente importado
 
@@ -104,26 +106,37 @@ const handleImageUpload = async (event) => {
     };
   }, [editor]);
 
-  const handleSave = async () => {
-    if (!title.trim()) {
-      toast.error('El título es obligatorio');
-      return;
-    }
+ const handleSave = async () => {
+  if (!title.trim()) {
+    toast.error('El título es obligatorio');
+    return;
+  }
 
-    try {
+  const slug = generateSlug(title);
+
+  try {
+    // Verificar si ya existe un documento con el mismo slug
+    const { data: existing } = await supabase
+      .from('documentos')
+      .select('id')
+      .eq('slug', slug);
+
+    const finalSlug = existing.length > 0 ? `${slug}-${Date.now()}` : slug;
+
     const { data, error } = await supabase
       .from('documentos')
       .insert([{ 
         titulo: title, 
-        contenido: content 
+        contenido: content,
+        slug: finalSlug,
       }]);
 
     if (error) throw error;
-    
+
     toast.success('Guardado exitoso', {
       description: 'Ya puedes verlo en tu lista de documentos',
     });
-    
+
   } catch (err) {
     toast.error('Error al guardar', {
       description: 'Revisa la consola para más detalles',
