@@ -32,5 +32,8 @@
     "sonner": "^2.0.5",
     "tailwind": "4.0.0",
     "tailwindcss": "4.1.8"
+  },
+  "devDependencies": {
+    "@astrojs/cloudflare": "^12.5.4"
   }
 }
