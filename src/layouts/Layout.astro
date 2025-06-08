@@ -1,6 +1,7 @@
 ---
 import Header from "../components/ui/nav/Header.astro";
 import "../styles/global.css";
+import ToasterWrapper from '../components/ui/ToasterWrapper';
 ---
 <!doctype html>
 <html lang="es">
@@ -13,10 +14,11 @@ import "../styles/global.css";
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<ToasterWrapper client:load />
 		<Header />
 		<main class="container mx-auto px-4 py-8">
-			<slot name="main" />
-		<slot />
+			<slot />
+		</main>
 
 		<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 	</body>

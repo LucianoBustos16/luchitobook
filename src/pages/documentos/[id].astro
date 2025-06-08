@@ -1,0 +1,31 @@
+---
+// SSR dinámico
+import { supabase } from '../../lib/supabaseClient';
+
+const { params } = Astro;
+const { id } = params;
+
+const { data: doc, error } = await supabase
+  .from('documentos')
+  .select('*')
+  .eq('id', id)
+  .single();
+
+if (error || !doc) {
+  throw new Error('Documento no encontrado');
+}
+---
+
+<html lang="es">
+  <head>
+    <title>{doc.titulo}</title>
+  </head>
+  <body>
+    <main style="max-width: 700px; margin: auto; padding: 2rem;">
+      <a href="/documentos">← Volver</a>
+      <h1>{doc.titulo}</h1>
+      <p style="color: #666;">{new Date(doc.creado_en).toLocaleDateString()}</p>
+      <div class="contenido" set:html={doc.contenido} />
+    </main>
+  </body>
+</html>

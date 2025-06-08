@@ -9,6 +9,7 @@ import TableRow from '@tiptap/extension-table-row'
 import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
+import { toast } from 'sonner';
 
 import ImageUploadButton from './ImageUploadButton.jsx'; // Asegúrate de que este componente esté correctamente importado
 
@@ -105,25 +106,31 @@ const handleImageUpload = async (event) => {
 
   const handleSave = async () => {
     if (!title.trim()) {
-      alert("¡El título es obligatorio!");
+      toast.error('El título es obligatorio');
       return;
     }
 
     try {
-      const { data, error } = await supabase
-        .from('documentos')
-        .insert([{
-          titulo: title,
-          contenido: content
-        }]);
+    const { data, error } = await supabase
+      .from('documentos')
+      .insert([{ 
+        titulo: title, 
+        contenido: content 
+      }]);
 
-      if (error) throw error;
-      alert("Documento guardado en Supabase!");
-    } catch (err) {
-      console.error("Error al guardar:", err);
-      alert("Error al guardar. Revisa la consola.");
-    }
-  };
+    if (error) throw error;
+    
+    toast.success('Guardado exitoso', {
+      description: 'Ya puedes verlo en tu lista de documentos',
+    });
+    
+  } catch (err) {
+    toast.error('Error al guardar', {
+      description: 'Revisa la consola para más detalles',
+    });
+    console.error("Error detallado:", err);
+  }
+};
 
   const handleHeadingChange = (event) => {
     const value = event.target.value;
@@ -159,7 +166,7 @@ const handleImageUpload = async (event) => {
           id="countries"
           value={selectedHeading}
           onChange={handleHeadingChange}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option value="p">Párrafo</option>
           <option value="h1">Título 1</option>
           <option value="h2">Título 2</option>
